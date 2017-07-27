@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <link rel="stylesheet" href="css/base.css">
+        <link rel="stylesheet" href="css/index.css">
+    </head>
+    <body>
+    <!-- 最外层盒子 -->
+    <div class="container">
+        <!--  头部 -->
+    	<div class="header">
+    	  <a href="#" class="header-logo fl"></a>
+    	  <div class="header-nav fr">
+    	    <ul>
+    	  	   <li><a href="#contact-us" id="nav-contact">联系</a></li>
+    	  	   <li><a href="#about-us" id="nav-about">关于</a></li>
+    	  	   <li><a href="#service" id="nav-service">服务</a></li>
+    	  	   <li><a href="#" id="nav-product">产品</a></li>
+    	  	   <li><a href="#" class="selected" id="nav-index">首页</a></li>
+    	    </ul>	  	
+    	  </div>  	
+    	</div>
+    	<!-- 占位 -->
+    	<div style="height:100px;"></div>
+    	<!-- banner图 -->
+    	<div class="banner"></div>
+    	<!-- 服务 -->
+    	<div class="service" id="service">
+    		<img src="images/us-service.jpg" height="80" width="230" class="service-logo">
+    		<img src="images/service-img.jpg"  class="service-image">
+    	</div>
+    	<!-- 关于我们 -->
+    	<div class="about-us w1000 clearfix" id="about-us">
+    	   <img src="images/aboutus-title.jpg" class="about-us-logo"> 
+           <div class="about-us-text fl">
+    	       <p>深圳尚乐科技有限公司是一家移动互联网优质产品和服务提供商，主营业务有手游、应用产品，项目开发服务，致力于为移动互联网提供最优秀的产品体验和最专业的技术服务。</p>
+               <p>我们提供高质量的行业解决方案和最专业的技术服务支持，为客户提供各类手游、应用开发服务，各类系统项目开发服务，专业测试及性能工程服务，软件项目外包及技术外派等服务以及各类产品UE、UI设计服务。</p>
+               <p>团队成员均来自腾讯、华为、360、百度、卓望......大型软件企业，拥有一流的专业技能和深厚的经验沉淀。能为为用户打造极致的产品体验，为客户提供一流的技术支撑与服务。</p>
+           </div>
+           <img src="images/us.jpg" height="424" width="480" class="about-us-image">      
+        </div>
+    	<!-- 联系我们 -->
+    	<div class="contact-us w1000 clearfix" id="contact-us">
+    		<img src="images/contactus-title.jpg" class="contact-us-logo">
+    		<div class="contact-us-twocode">
+    		  <img src="images/twice-code.jpg" height="160" width="160">
+    		  <span>扫一扫&nbsp;关注尚乐</span>
+    		</div>
+    	</div>
+        
+    	<!-- 底部 -->
+    	<div class="footer">
+    	   &copy;2015-2018sljoy.com
+    	</div>
+    </div>
+    </body>
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script>
+      $(function(){
+        $('.header-nav li').click(function(){
+        	$('.header-nav a').removeClass('selected');
+        	$(this).find('a').addClass('selected');
+        	
+       });
+        scroll();
+        function scroll(){
+          /*var maxWidth = $('.header').height();
+          console.log(maxWidth);*/
+          window.onscroll = function(){
+          var scrollDistance = $(document).scrollTop();
+          	/*console.log(scrollDistance);*/
+         if(scrollDistance > 0){
+          	  $('.header').css('backgroundColor','#333333');
+          	}
+         else{
+          	  $('.header').css('backgroundColor','#000066');
+          	}
+          }
+        }
+
+        autoPosition();
+        function autoPosition(){
+        	window.onscroll = function(){
+              var scrollDistance = $(document).scrollTop();
+              var serviceDistance = $('.service').offset().top;
+              var aboutDistance = $('.about-us').offset().top;
+              var contactDistance = $('.contact-us').offset().top;
+              if(scrollDistance < serviceDistance){
+              	$('.header-nav a').removeClass('selected');
+              	$('.header-nav a:eq(4)').addClass('selected');
+
+              }
+              else if(scrollDistance >= serviceDistance && scrollDistance < aboutDistance){
+              	$('.header-nav a').removeClass('selected');
+              	$('.header-nav a:eq(2)').addClass('selected');
+              }
+              else if(scrollDistance >= aboutDistance  && scrollDistance < contactDistance){
+              	$('.header-nav a').removeClass('selected');
+              	$('.header-nav a:eq(1)').addClass('selected');
+              }     
+              else{
+              	$('.header-nav a').removeClass('selected');
+              	$('.header-nav a:eq(0)').addClass('selected');
+
+              }
+
+        	 /* console.log(scrollDistance);
+        	  console.log(serviceDistance);
+        	  console.log(aboutDistance);
+        	  console.log(contactDistance);*/
+        	}     	
+        }
+      })
+    </script>
+</html>
